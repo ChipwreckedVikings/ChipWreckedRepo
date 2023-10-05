@@ -27,10 +27,10 @@ public class BasicDriving extends LinearOpMode {
     public void runOpMode() {
 
         // Initializes all 4 DcMotors; named by top-down view with front of robot facing away
-        dcMotors.add(hardwareMap.get(DcMotor.class, "LeftForeDcMotor0"));
-        dcMotors.add(hardwareMap.get(DcMotor.class, "RightForeDcMotor1"));
-        dcMotors.add(hardwareMap.get(DcMotor.class, "LeftRearDcMotor2"));
-        dcMotors.add(hardwareMap.get(DcMotor.class, "RightRearDcMotor3"));
+        dcMotors.add(hardwareMap.get(DcMotor.class, "RightRearDcMotor0"));
+        dcMotors.add(hardwareMap.get(DcMotor.class, "LeftRearDcMotor1"));
+        dcMotors.add(hardwareMap.get(DcMotor.class, "LeftForeDcMotor2"));
+        dcMotors.add(hardwareMap.get(DcMotor.class, "RightForeDcMotor3"));
 
         // Angular Position encoders should count to for each movement Period
         final int FORWARD_AMOUNT0 = 2000;
