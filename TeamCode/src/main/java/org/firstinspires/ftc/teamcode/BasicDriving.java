@@ -44,6 +44,8 @@ public class BasicDriving extends LinearOpMode {
             dcMotors.get(i).setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             if(i == 0 || i == 3)
                 dcMotors.get(i).setTargetPosition(-FORWARD_AMOUNT0);
+            else
+                dcMotors.get(i).setTargetPosition(FORWARD_AMOUNT0);
         }
 
         // The three main movement Periods for this Program:
