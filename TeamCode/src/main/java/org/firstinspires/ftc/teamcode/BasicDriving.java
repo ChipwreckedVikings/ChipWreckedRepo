@@ -40,9 +40,10 @@ public class BasicDriving extends LinearOpMode {
         final int FORWARD_AMOUNT1 = 1000;
 
         // Resets angular position of DcMotor Encoders and sets target angular position
-        for (DcMotor motor : dcMotors) {
-            motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            motor.setTargetPosition(FORWARD_AMOUNT0);
+        for (int i = 0; i < 4; i++) {
+            dcMotors.get(i).setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            if(i == 0 || i == 3)
+                dcMotors.get(i).setTargetPosition(-FORWARD_AMOUNT0);
         }
 
         // The three main movement Periods for this Program:
