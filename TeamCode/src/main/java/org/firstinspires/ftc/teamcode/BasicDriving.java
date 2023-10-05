@@ -26,6 +26,8 @@ public class BasicDriving extends LinearOpMode {
     @Override
     public void runOpMode() {
 
+        waitForStart();
+
         // Initializes all 4 DcMotors; named by top-down view with front of robot facing away
         dcMotors.add(hardwareMap.get(DcMotor.class, "RightRearDcMotor0"));
         dcMotors.add(hardwareMap.get(DcMotor.class, "LeftRearDcMotor1"));
