@@ -13,6 +13,7 @@ import java.util.ArrayList;
     Program to Move Robot Forward to position 200(based by DcMotor Encoders)
     180 degree counter-clockwise rotation and moving forward a second time
     To be added by remaining members of the Coding Team
+    *
 ****************************************
 */
 @Autonomous
@@ -20,7 +21,7 @@ public class BasicDriving extends LinearOpMode {
 
     // Initializes ArrayList<DcMotor>
     // ArrayList of each DcMotor
-    private ArrayList<DcMotor> dcMotors = new ArrayList<DcMotor>();
+    private final ArrayList<DcMotor> dcMotors = new ArrayList<>();
 
     // What the robot does while running this OpMode
     @Override
