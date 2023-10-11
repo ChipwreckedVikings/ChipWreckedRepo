@@ -51,9 +51,13 @@ public class BasicDriving extends LinearOpMode {
         // Moving forward,
         // 180 degree Counter-Clockwise(CC) rotation,
         // and moving forward again
-        boolean isForwardPeriod0 = true,
-                is180CCRotationPeriod = false,
-                isForwardPeriod1 = false;
+        boolean isForwardPeriod0 = true;
+        boolean is180CCRotationPeriod = false;
+        boolean isForwardPeriod1 = false;
+        boolean section4 = false;
+        boolean section5 = false;
+        boolean section6 = false;
+
 
         // Do this while the program is running
         while(opModeIsActive()) {
@@ -98,6 +102,18 @@ public class BasicDriving extends LinearOpMode {
             // Moves Robot forward with an encoded Angular position of 1000
             else if(isForwardPeriod1) {
                 // Add Code Here
+            }
+
+            else if(section4) {
+
+            }
+
+            else if(section5) {
+
+            }
+
+            else if(section6) {
+
             }
 
             // Stops program if every other movement Period is finished
