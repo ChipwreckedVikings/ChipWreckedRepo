@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 @Autonomous
 public class Movement extends LinearOpMode{
-
+    // Array of DcMotors
     private DcMotor[] dcMotors;
     private final int TICKS_PER_REV = 560;
     private final double GEAR_RATIO = 2;
@@ -15,6 +15,7 @@ public class Movement extends LinearOpMode{
 
     // motorSpeed is from [-1,1]
     private double motorSpeed;
+    // Constructor for Movement class DcMotors must be created with hardwareMap.get(DcMotor, String)
     public Movement(DcMotor rightRear, DcMotor leftRear, DcMotor leftFore, DcMotor rightFore) {
         dcMotors[0] = rightRear;
         rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -27,6 +28,7 @@ public class Movement extends LinearOpMode{
         motorSpeed = 0;
     }
 
+    // assumed no motors
     public Movement() {
         dcMotors = null;
         motorSpeed = 0;
@@ -48,7 +50,7 @@ public class Movement extends LinearOpMode{
     // otherwise encoders keep position after moving forward
     // Issue: currently distance refers to rotations of the wheels not distance the robot moves
     // Measurements needed for implementation
-    public void moveDirection(double revolutions, boolean resetEncoders) {
+    public void move(double revolutions, boolean resetEncoders) {
 
         double distance = Math.PI*WHEEL_DIAMETER*TICKS_PER_REV*GEAR_RATIO*revolutions;
         // Sets target position for each DcMotor
@@ -60,19 +62,21 @@ public class Movement extends LinearOpMode{
             motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
-        // Turns on power for all motors goes at the speed identified by the motorSpeed variable
-        for (DcMotor motor : dcMotors) {
-            motor.setPower(motorSpeed);
+        // Turns motor on at required speed until target reached
+        while(dcMotors[3].isBusy()) {
+            // Turns on power for all motors goes at the speed identified by the motorSpeed variable
+            for (DcMotor motor : dcMotors) {
+                motor.setPower(motorSpeed);
+            }
         }
 
         // when the DcMotors are done moving reset encoders if requested and stop moving
-        if(!dcMotors[3].isBusy()) {
-            for (DcMotor motor : dcMotors) {
-                motor.setPower(0.0);
-                if(resetEncoders)
-                    motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            }
+        for (DcMotor motor : dcMotors) {
+            motor.setPower(0.0);
+            if(resetEncoders)
+                motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
+
     }
 
     // rotates the robot by the given angle in degrees
@@ -98,19 +102,18 @@ public class Movement extends LinearOpMode{
             motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
-        // Turns on power for all motors goes at the speed identified by the motorSpeed variable
-        for (DcMotor motor : dcMotors) {
-            motor.setPower(motorSpeed);
-        }
-        // when the DcMotors are done moving reset encoders if requested and stop moving
-        if(!dcMotors[3].isBusy()) {
+        while(dcMotors[3].isBusy()) {
+            // Turns on power for all motors goes at the speed identified by the motorSpeed variable
             for (DcMotor motor : dcMotors) {
-                motor.setPower(0.0);
-                if(resetEncoders)
-                    motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                motor.setPower(motorSpeed);
             }
         }
-
+        // when the DcMotors are done moving reset encoders if requested and stop moving
+        for (DcMotor motor : dcMotors) {
+            motor.setPower(0.0);
+            if(resetEncoders)
+                motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        }
 
     }
 
@@ -119,6 +122,7 @@ public class Movement extends LinearOpMode{
 
         waitForStart();
 
+        // Declares & Intializes Movement object
         Movement chipWrecked = new Movement(
                                hardwareMap.get(DcMotor.class, "RightRearDcMotor0"),
                                hardwareMap.get(DcMotor.class, "LeftRearDcMotor1"),
@@ -126,11 +130,12 @@ public class Movement extends LinearOpMode{
                                hardwareMap.get(DcMotor.class, "RightForeDcMotor3")
         );
 
-        chipWrecked.moveDirection(10, true);
+        // Example movement
+        chipWrecked.move(10, true);
         chipWrecked.rotate(90, true);
-        chipWrecked.moveDirection(5, true);
+        chipWrecked.move(5, true);
         chipWrecked.rotate(180, true);
-        chipWrecked.moveDirection(10, true);
+        chipWrecked.move(10, true);
 
         // Stops Program if it has been running for 30 seconds or more
         if(this.getRuntime() >= 30 )
