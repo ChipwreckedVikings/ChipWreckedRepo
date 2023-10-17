@@ -42,6 +42,9 @@ public class BasicDriving extends LinearOpMode {
 
         // Resets angular position of DcMotor Encoders and sets target angular position
         // All Right motors go in reverse since the set rotation is clockwise for DcMotors
+        // indexOf() returns the index of the first time a character or a substring shows up in a String
+        // If it doesn't show up it returns -1
+        // Right side motors rotate the opposite way by default since they are technically upside down
         for (DcMotor motor: dcMotors) {
             motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             motor.setTargetPosition(-("0" + motor.getDeviceName()).indexOf("Right")*FORWARD_AMOUNT0);
