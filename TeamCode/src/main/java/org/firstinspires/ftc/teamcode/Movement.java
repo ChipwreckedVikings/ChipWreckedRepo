@@ -54,8 +54,9 @@ public class Movement extends LinearOpMode{
 
         double distance = Math.PI*WHEEL_DIAMETER*TICKS_PER_REV*GEAR_RATIO*revolutions;
         // Sets target position for each DcMotor
+        // if the motor name does not include "Right" then String.indexOf(String) will return -1
         for(DcMotor motor: dcMotors)
-            motor.setTargetPosition(-motor.getDeviceName().indexOf("Right")*(int)Math.round(distance));
+            motor.setTargetPosition(-("0" + motor.getDeviceName()).indexOf("Right")*(int)Math.round(distance));
 
         // Sets all DcMotor RunModes to make the robot move until the target position is met
         for (DcMotor motor : dcMotors) {

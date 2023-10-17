@@ -44,7 +44,7 @@ public class BasicDriving extends LinearOpMode {
         // All Right motors go in reverse since the set rotation is clockwise for DcMotors
         for (DcMotor motor: dcMotors) {
             motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            motor.setTargetPosition(-motor.getDeviceName().indexOf("Right")*FORWARD_AMOUNT0);
+            motor.setTargetPosition(-("0" + motor.getDeviceName()).indexOf("Right")*FORWARD_AMOUNT0);
         }
 
         // The three main movement Periods for this Program:
