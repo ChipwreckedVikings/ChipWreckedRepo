@@ -57,7 +57,7 @@ public class BasicDrivingManeetS extends LinearOpMode {
                     motor.setPower(1.0 / 3.0);
                 }
                 if (this.getRuntime() >= 30)
-                    this.requestOpModeStop(); // Shuts down OpMode after 30 seconds
+                    this.requestOpModeStop(); // Shuts down OpMode after 30 seconds.
 
             }
 
