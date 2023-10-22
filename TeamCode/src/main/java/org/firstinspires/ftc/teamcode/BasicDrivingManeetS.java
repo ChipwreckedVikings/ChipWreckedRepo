@@ -13,6 +13,8 @@ public class BasicDrivingManeetS extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         waitForStart();
+
+        // The next 4 lines of code add each motor connected to the robot to the ArrayList.
         dcMotors.add(hardwareMap.get(DcMotor.class, "RightRearDcMotor0"));
         dcMotors.add(hardwareMap.get(DcMotor.class, "LeftRearDcMotor1"));
         dcMotors.add(hardwareMap.get(DcMotor.class, "LeftForeDcMotor2"));
@@ -21,7 +23,7 @@ public class BasicDrivingManeetS extends LinearOpMode {
         int forward = 2000;
         for (DcMotor motor : dcMotors) {
             motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            motor.setTargetPosition(-("0" + motor.getDeviceName()).indexOf("Left") * forward); // Sets the 1st target position
+            motor.setTargetPosition(-("0" + motor.getDeviceName()).indexOf("Right") * forward); // Sets the 1st target position
         }
 
         for (DcMotor motor : dcMotors) {
@@ -42,7 +44,7 @@ public class BasicDrivingManeetS extends LinearOpMode {
 
                 for (DcMotor motor : dcMotors) {
                     motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                    motor.setTargetPosition(-("10" + motor.getDeviceName()).indexOf("Right") * forward); // Changes the target position
+                    motor.setTargetPosition(-("10" + motor.getDeviceName()).indexOf("left") * forward); // Changes the target position
                 }
 
                 for (DcMotor motor : dcMotors) {
@@ -50,7 +52,7 @@ public class BasicDrivingManeetS extends LinearOpMode {
                 }
 
                 for (DcMotor motor : dcMotors) {
-                    motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motor.setMode(DcMotor.RunMode.RUN_TO_POSITION); // Tells the motors to go to its defined position
                 }
 
                 for (DcMotor motor : dcMotors) {
