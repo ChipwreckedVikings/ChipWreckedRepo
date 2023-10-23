@@ -99,7 +99,27 @@ public class BasicDriving extends LinearOpMode {
             // Rotates robot 180 degrees with an encoded Angular position of 500
             // Is this correct? Find out
             else if(is180CCRotationPeriod) {
-                // Add Code Here
+                 // Sets all motor RunModes to make robot until the target position is met
+                for (DcMotor motor : dcMotors) {
+                    motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                }
+
+                // Turns on power for all motors at 1/2 of the maximum power
+                for (DcMotor motor : dcMotors) {
+                    motor.setPower(1.0 / 2.0);
+                }
+
+                // If the motors are no longer moving then switches to 180CCRotationPeriod
+                // Resets encoders and sets new target position
+                if(!dcMotors.get(0).isBusy()) {
+                    is180CCRotationPeriod = false;
+                    isForwardPeriod1 = true;
+                    for (DcMotor motor: dcMotors) {
+                        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                        motor.setTargetPosition(FORWARD_AMOUNT1);
+                        motor.setPower(0.0);
+                    }
+                }
             }
 
             // Moves Robot forward with an encoded Angular position of 1000
