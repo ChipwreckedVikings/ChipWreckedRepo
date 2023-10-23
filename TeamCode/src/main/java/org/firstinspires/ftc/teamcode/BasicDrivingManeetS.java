@@ -22,7 +22,7 @@ public class BasicDrivingManeetS extends LinearOpMode {
 
         int forward = 2000;
         for (DcMotor motor : dcMotors) {
-            motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             motor.setTargetPosition(-("0" + motor.getDeviceName()).indexOf("Right") * forward); // Sets the 1st target position
         }
 
@@ -43,7 +43,7 @@ public class BasicDrivingManeetS extends LinearOpMode {
             if (this.getRuntime() >= 13) { // Creates a delay where the motor stops
 
                 for (DcMotor motor : dcMotors) {
-                    motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                    motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                     motor.setTargetPosition(-("10" + motor.getDeviceName()).indexOf("left") * forward); // Changes the target position
                 }
 
