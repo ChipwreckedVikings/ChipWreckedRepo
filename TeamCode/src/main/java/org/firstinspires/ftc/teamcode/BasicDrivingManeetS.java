@@ -44,7 +44,7 @@ public class BasicDrivingManeetS extends LinearOpMode {
 
                 for (DcMotor motor : dcMotors) {
                     motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                    motor.setTargetPosition(-("10" + motor.getDeviceName()).indexOf("left") * forward); // Changes the target position
+                    motor.setTargetPosition(-("2" + motor.getDeviceName()).indexOf("Left") * forward); // Changes the target position
                 }
 
                 for (DcMotor motor : dcMotors) {
