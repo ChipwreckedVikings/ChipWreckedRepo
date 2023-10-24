@@ -100,11 +100,43 @@ public class BasicDriving extends LinearOpMode {
             // Is this correct? Find out
             else if(is180CCRotationPeriod) {
                 // Add Code Here
+                for(DcMotor motor : dcMotors)
+                {
+                    motor.setMode(DDcMotor.RunMode.RUN_TO_POSITION);
+                    motor.setTargetPosition(ROTATION_AMOUNT);
+                    motor.setPower(1.0 / 3.0);
+                }
+                if(!dcMotors.get(0).isBusy())
+                {
+                    is180CCRotationPeriod = false;
+                    isForwardPeriod1 = true;
+                    for(DcMotor motor : dcMotors)
+                    {
+                       motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                       motor.setTargetPosition(FORWARD_AMOUNT1);
+                       motor.setPower(0);
+                    }
+                }
             }
 
             // Moves Robot forward with an encoded Angular position of 1000
             else if(isForwardPeriod1) {
                 // Add Code Here
+                for(DcMotor motor : dcMotors)
+                {
+                    motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motor.setTargetPosition(FORWARD_AMOUNT1);
+                    motor.setPower(2.0 / 3.0);
+                }
+                if(!dcMotors.get(0).isBusy())
+                {
+                    isForwardPeriod1 = false;
+
+                    for(DcMotor motor : dcMotors)
+                    {
+                        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                    }
+                }
             }
 
             else if(section4) {
