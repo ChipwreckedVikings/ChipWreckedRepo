@@ -123,7 +123,7 @@ public class Movement extends LinearOpMode{
 
         waitForStart();
 
-        // Declares & Intializes Movement object
+        // Declares & Initializes Movement object
         Movement chipWrecked = new Movement(
                                hardwareMap.get(DcMotor.class, "RightRearDcMotor0"),
                                hardwareMap.get(DcMotor.class, "LeftRearDcMotor1"),
